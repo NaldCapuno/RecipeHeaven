@@ -48,9 +48,11 @@
     <div class="navbar">
         <ul>
             <li class="home"><a href="index.php">RecipeHeaven</a></li>
-            <li class="user-info">
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li class="user-info">
                     <span>Welcome, <a href="account.php?user_id=<?php echo $_SESSION['user_id']; ?>"><?php echo $_SESSION['username']; ?></a></span>
                 </li>
+            <?php endif; ?>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li class="log-in-out">
                     <a href="logout.php">Logout</a>
@@ -63,6 +65,7 @@
         </ul>
     </div>
     <div class="container">
+        <a href="add_recipe.php" class="add-btn"><i class="fa-solid fa-plus"></i></a>
         <div class="recipes">
             <ul>
                 <?php while ($row = $result->fetch_assoc()): ?>
